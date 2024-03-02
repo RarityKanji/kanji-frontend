@@ -13,7 +13,6 @@ import "./App.css"
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null)
-  const [collectibles, setCollectibles] = useState([])
 
   return (
     <>
@@ -23,8 +22,8 @@ const App = () => {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/itemnew" element={<ItemNew />} />
         <Route path="/itemedit/:id" element={<ItemEdit />} />
-        <Route path="/itemshow/:id" element={<ItemShow />} />
-        <Route path="/itemindex" element={<ItemIndex />} />
+        <Route path="/items/:itemId" element={<ItemShow />} />
+        <Route path="/collectibles/:category" element={<ItemIndex />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
