@@ -10,9 +10,12 @@ import ItemEdit from "./pages/ItemEdit"
 import ItemShow from "./pages/ItemShow"
 import ItemIndex from "./pages/ItemIndex"
 import "./App.css"
+import mockUsers from "./pages/mockUsers"
+import mockCollectibles from "./pages/mockCollectibles"
 
 const App = () => {
-  const [currentUser, setCurrentUser] = useState(null)
+  const [currentUser, setCurrentUser] = useState(mockUsers[0])
+  const [collectibles, setCollectibles] = useState(mockCollectibles)
 
   return (
     <>
