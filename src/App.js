@@ -10,10 +10,12 @@ import ItemEdit from "./pages/ItemEdit"
 import ItemShow from "./pages/ItemShow"
 import ItemIndex from "./pages/ItemIndex"
 import "./App.css"
+import mockUsers from "./pages/mockUsers"
+import mockCollectibles from "./pages/mockCollectibles"
 
 const App = () => {
-  const [currentUser, setCurrentUser] = useState(null)
-  const [collectibles, setCollectibles] = useState([])
+  const [currentUser, setCurrentUser] = useState(mockUsers[0])
+  const [collectibles, setCollectibles] = useState(mockCollectibles)
 
   return (
     <>
@@ -23,8 +25,8 @@ const App = () => {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/itemnew" element={<ItemNew />} />
         <Route path="/itemedit/:id" element={<ItemEdit />} />
-        <Route path="/itemshow/:id" element={<ItemShow />} />
-        <Route path="/itemindex" element={<ItemIndex />} />
+        <Route path="/items/:itemId" element={<ItemShow />} />
+        <Route path="/collectibles/:category" element={<ItemIndex />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

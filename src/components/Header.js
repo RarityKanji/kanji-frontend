@@ -1,6 +1,9 @@
 import React, { useState } from "react"
 import { NavLink, useNavigate } from "react-router-dom"
-import { Nav, NavItem, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
+import { Nav, NavItem, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap"
+import { Link } from "react-scroll"
+
+const logoUrl = `${process.env.PUBLIC_URL}/assets/logo.png`
 
 const Header = ({ currentUser, logout }) => {
   const navigate = useNavigate()
@@ -15,12 +18,13 @@ const Header = ({ currentUser, logout }) => {
   }
 
   return (
-    <div>
-      <header className="header">
-      </header>
+    <div className="header-nav">
+      <NavLink to="/" className="logo-link">
+        <img src={logoUrl} alt="Kanji Logo" className="header-logo" />
+      </NavLink>
       <Nav className="nav">
         <NavItem>
-          <NavLink to="/" className="nav-link">Home</NavLink> 
+          <NavLink to="/" className="nav-link">Home</NavLink>
         </NavItem>
         <Dropdown nav isOpen={dropdownOpen} toggle={toggleDropdown}>
           <DropdownToggle nav caret className="nav-link">
@@ -28,24 +32,17 @@ const Header = ({ currentUser, logout }) => {
           </DropdownToggle>
           <DropdownMenu>
             <DropdownItem>
-              <NavLink to="/collectibles/cards" className="nav-link">Cards</NavLink>
-            </DropdownItem>
-            <DropdownItem>
-              <NavLink to="/collectibles/books" className="nav-link">Books</NavLink>
-            </DropdownItem>
-            <DropdownItem>
-              <NavLink to="/collectibles/gems" className="nav-link">Gems</NavLink>
+              <Link to="classes" spy={true} smooth={true} duration={500} className="nav-link">
+                Classes
+              </Link>
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
+        <NavItem>
+          <NavLink to="/about" className="nav-link">About</NavLink>
+        </NavItem>
         {currentUser ? (
           <>
-            <NavItem>
-              <NavLink to="/mycollectibles" className="nav-link">My Collectibles</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink to="/itemnew" className="nav-link">Add New Collectible</NavLink>
-            </NavItem>
             <NavItem>
               <button onClick={handleLogout} className="nav-link btn-link">Log Out</button>
             </NavItem>
@@ -56,7 +53,7 @@ const Header = ({ currentUser, logout }) => {
               <NavLink to="/login" className="nav-link">Sign In</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink to="/signup" className="nav-link">Sign Up</NavLink>
+              <NavLink to="/signup" className="nav-link get-started-link">Get Started</NavLink>
             </NavItem>
           </>
         )}
