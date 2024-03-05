@@ -10,7 +10,6 @@ describe("<AboutUs />", () => {
         <AboutUs />
       </BrowserRouter>
     )
-    //screen.logTestingPlaygroundURL()
     const happyEnding = screen.getByRole("heading", { name: /about us/i })
     expect(happyEnding).toBeInTheDocument()
 
