@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useParams, NavLink } from "react-router-dom"
+import mockCollectibles from "./mockCollectibles"
 
 const ItemIndex = () => {
   const { category } = useParams()
@@ -8,22 +9,12 @@ const ItemIndex = () => {
   const [sortOrder, setSortOrder] = useState("asc") // Sort order state
 
   useEffect(() => {
-    const fetchItems = async () => {
-      try {
-        const response = await fetch(`http://localhost:3000/collectibles?category=${category}`)
-        if (!response.ok) throw new Error("Data could not be fetched.")
-        const data = await response.json()
-        setItems(data)
-      } catch (error) {
-        console.error("Fetch error:", error)
-      }
-    }
-
-    fetchItems()
-  }, [category])
-
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value)
+      // Filter items from mock data based on the category
+      const filteredItems = mockCollectibles.filter(item => item.category === category);
+      setItems(filteredItems);
+    }, [category]);
+      const handleSearchChange = (e) => {
+      setSearchTerm(e.target.value)
   }
 
   // Sort function
