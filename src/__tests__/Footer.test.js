@@ -10,7 +10,7 @@ describe("<Footer />", () => {
         <Footer />
       </BrowserRouter>
     )
-    //screen.logTestingPlaygroundURL()
+    
     const welcome = screen.getByRole("heading", { name: /kanji/i })
     expect(welcome).toBeInTheDocument()
 

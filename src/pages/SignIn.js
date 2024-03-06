@@ -1,22 +1,20 @@
-import React, { useState } from "react";
-import { useNavigate, NavLink } from "react-router-dom";
+import React, { useState } from "react"
+import { useNavigate, NavLink } from "react-router-dom"
 
-const logoPath = `${process.env.PUBLIC_URL}/assets/logo.png`;
-const backgroundImageUrl = `${process.env.PUBLIC_URL}/assets/superman.png`;
+const logoPath = `${process.env.PUBLIC_URL}/assets/logo.png`
+const backgroundImageUrl = `${process.env.PUBLIC_URL}/assets/superman.png`
 
 const SignIn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
-  const navigate = useNavigate();
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [showPassword, setShowPassword] = useState(false)
+  const [rememberMe, setRememberMe] = useState(false)
+  const navigate = useNavigate()
 
   const handleSignIn = (e) => {
-    e.preventDefault();
-    // Perform sign-in logic here, such as sending sign-in request to server
-    // After successful sign-in, navigate to the desired route
-    navigate("/itemprotectedindex"); // Example: navigate to protected items page
-  };
+    e.preventDefault()
+    navigate("/itemprotectedindex")
+  }
 
   return (
     <div className="signup-container">
@@ -83,7 +81,7 @@ const SignIn = () => {
         style={{ backgroundImage: `url(${backgroundImageUrl})` }}
       ></div>
     </div>
-  );
-};
+  )
+}
 
-export default SignIn;
+export default SignIn

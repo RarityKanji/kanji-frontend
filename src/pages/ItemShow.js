@@ -14,7 +14,7 @@ const ItemShow = () => {
       .then(data => {
         console.log("Data:", data)
         setItem(data)
-        setMainImage(data.images[0]) //First image is the main image
+        setMainImage(data.images[0])
       })
       .catch(error => console.error("Couldn't fetch item data:", error))
   }, [itemId])
@@ -22,17 +22,14 @@ const ItemShow = () => {
   if (!item) {
     return <div>Loading item details...</div>
   }
-
-  // Selector
+  
   const handleQuantityChange = (change) => {
     setQuantity(prevQuantity => Math.max(1, prevQuantity + change))
   }
 
-  // Email seller
   const emailSubject = encodeURIComponent(`Inquiry about ${item.name}`);
   const emailBody = encodeURIComponent(`I am interested in your ${item.name} listed for ${item.price}. Could you provide more information?`);
   
-
   return (
     <div className="item-detail-container">
       <div className="breadcrumb">
@@ -60,11 +57,9 @@ const ItemShow = () => {
             <p><FaCheck /> Free shipping on orders over $49USD.</p>
             <p><FaCheck /> Free + easy returns.</p>
           </div>
-          {/* Contact Seller Button */}
           <a href={`mailto:${item.sellerEmail}?subject=${emailSubject}&body=${emailBody}`} className="contact-seller-button">
             <FaEnvelope /> Contact Seller
           </a>
-          {/* Quantity selector and Add to bag, Checkout buttons */}
           <div className="quantity-selector">
             <button onClick={() => handleQuantityChange(-1)}>-</button>
             <span>{quantity}</span>

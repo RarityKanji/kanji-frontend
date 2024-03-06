@@ -12,8 +12,6 @@ const ItemIndex = () => {
     const fetchItems = async () => {
       try {
         setLoading(true)
-        // Simulate fetching items from an API or database
-        // Replace this with your actual fetch logic
         if (category) {
           const filteredItems = mockCollectibles.filter(
             item => item.category.toLowerCase() === category.toLowerCase()
