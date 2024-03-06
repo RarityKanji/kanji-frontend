@@ -10,7 +10,6 @@ describe("<Header />", () => {
         <Header />
       </BrowserRouter>
     )
-    //screen.logTestingPlaygroundURL()
      const welcomeHeader = screen.getByText(/classes/i)
     expect(welcomeHeader).toBeInTheDocument()
   })

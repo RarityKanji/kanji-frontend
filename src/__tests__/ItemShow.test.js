@@ -1,7 +1,7 @@
-import { render, screen } from "@testing-library/react";
-import ItemShow from "../pages/ItemShow";
-import { MemoryRouter, Routes, Route} from "react-router-dom";
-import mockCollectibles from "../pages/mockCollectibles";
+import { render, screen } from "@testing-library/react"
+import ItemShow from "../pages/ItemShow"
+import { MemoryRouter, Routes, Route} from "react-router-dom"
+import mockCollectibles from "../pages/mockCollectibles"
 
 
 describe("<ItemShow />", () => {
@@ -12,10 +12,9 @@ describe("<ItemShow />", () => {
           <Route path="/items/:itemId" element={<ItemShow collectibles = {mockCollectibles} />} />
         </Routes>
       </MemoryRouter>
-    );
-    //screen.logTestingPlaygroundURL()
-    const itemShow = screen.getByText(/loading item details\.\.\./i);
-    expect(itemShow).toBeInTheDocument();
-  });
-});
+    )
+    const itemShow = screen.getByText(/loading item details\.\.\./i)
+    expect(itemShow).toBeInTheDocument()
+  })
+})
 

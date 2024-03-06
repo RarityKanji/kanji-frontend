@@ -7,7 +7,6 @@ const gifHome = "https://i.giphy.com/PipqS8rFolj0393M1O.webp"
 const Home = () => {
   return (
     <div>
-      {/* Intro Section with GIPHY as Background */}
       <div className="intro-section" style={{ backgroundImage: `url(${gifHome})` }}>
         <h1>THE WORLD'S TREASURES MADE ACCESSIBLE TO ALL</h1>
         <NavLink to="/signup" className="join-button">
@@ -15,7 +14,6 @@ const Home = () => {
         </NavLink>
       </div>
 
-      {/* Services Overview Section */}
       <div className="services-overview">
         <h2>Why Choose Kanji?</h2>
         <div className="service-cards-container">
@@ -49,7 +47,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Classes Section */}
       <div className="rare-categories-section" id="classes">
         <h2>Classes</h2>
         <div className="categories">
@@ -65,7 +62,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Trust Section */}
       <div className="trust-section">
         <h2>Trusted by</h2>
         <ul className="trusted-logos">

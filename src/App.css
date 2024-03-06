@@ -363,3 +363,88 @@ body, html {
   border-color: #ffffff;
   text-decoration: none;
 }
+
+/* Sign Up Styles */
+.signup-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.signup-form {
+  width: 50%;
+  padding: 20px;
+}
+
+.signup-image {
+  width: 50%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.logo {
+  display: block !important;
+  margin: 0 auto 100px !important;
+  width: 100px;
+  height: auto;
+}
+.input-group label {
+  display: block;
+  font-weight: bold;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.remember-me {
+  flex-grow: 1;
+}
+
+.forgot-password {
+  margin-left: auto;
+}
+
+.signup-button {
+  width: 100%;
+  padding: 10px;
+}
+
+.sign-in-redirect {
+  margin-top: 40px; 
+}
+.social-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+social-button {
+  flex: 1;
+  margin-right: 10px;
+}
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 20px 0
+}
+
+.divider:before,
+.divider:after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #000;
+}
+
+.divider:before {
+  margin-right: .5em;
+}
+
+.divider:after {
+  margin-left: .5em;
+}

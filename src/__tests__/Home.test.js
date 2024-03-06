@@ -10,7 +10,6 @@ describe("<Home />", () => {
         <Home />
       </BrowserRouter>
     )
-    //screen.logTestingPlaygroundURL()
     const welcomeHeader = screen.getByRole("heading", { name: /the world's treasures made accessible to all/i })
     expect(welcomeHeader).toBeInTheDocument()
 
