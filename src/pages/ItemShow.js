@@ -1,35 +1,44 @@
-import React, { useState, useEffect } from "react"
-import { useParams, Link } from "react-router-dom"
-import { FaShoppingCart, FaCheck, FaEnvelope } from "react-icons/fa" 
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import { FaShoppingCart, FaCheck, FaEnvelope } from "react-icons/fa";
 
-const ItemShow = () => {
-  const { itemId } = useParams()
-  const [item, setItem] = useState(null)
-  const [mainImage, setMainImage] = useState('')
-  const [quantity, setQuantity] = useState(1)
+// Assume mock data and setItems function are passed as props
+const ItemShow = ({ items, setItems }) => {
+  const { itemId } = useParams();
+  const navigate = useNavigate();
+  const [item, setItem] = useState(null);
+  const [mainImage, setMainImage] = useState('');
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/items/${itemId}`)
-      .then(response => response.json())
-      .then(data => {
-        console.log("Data:", data)
-        setItem(data)
-        setMainImage(data.images[0])
-      })
-      .catch(error => console.error("Couldn't fetch item data:", error))
-  }, [itemId])
+    // Simulating fetch item details from mock data
+    const foundItem = items.find(item => item.id.toString() === itemId);
+    if (foundItem) {
+      setItem(foundItem);
+      setMainImage(foundItem.images && foundItem.images.length > 0 ? foundItem.images[0] : '');
+    } else {
+      navigate('/not-found'); // Redirect to a not-found page or handle this case accordingly
+    }
+  }, [itemId, items, navigate]);
+
+  const handleQuantityChange = (change) => {
+    setQuantity(prevQuantity => Math.max(1, prevQuantity + change));
+  };
+
+  const handleDelete = () => {
+    // Filter out the item to delete
+    const updatedItems = items.filter(item => item.id.toString() !== itemId);
+    setItems(updatedItems); // Update the mock data state
+    navigate('/'); // Redirect user after deletion
+  };
 
   if (!item) {
-    return <div>Loading item details...</div>
-  }
-  
-  const handleQuantityChange = (change) => {
-    setQuantity(prevQuantity => Math.max(1, prevQuantity + change))
+    return <div>Loading item details...</div>;
   }
 
   const emailSubject = encodeURIComponent(`Inquiry about ${item.name}`);
   const emailBody = encodeURIComponent(`I am interested in your ${item.name} listed for ${item.price}. Could you provide more information?`);
-  
+
   return (
     <div className="item-detail-container">
       <div className="breadcrumb">
@@ -67,10 +76,12 @@ const ItemShow = () => {
           </div>
           <button className="add-to-bag"><FaShoppingCart /> Add to bag</button>
           <button className="checkout">Checkout</button>
+          {/* Add a delete button */}
+          <button onClick={handleDelete} className="delete-item">Delete Item</button>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ItemShow
+export default ItemShow;

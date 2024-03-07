@@ -1,20 +1,31 @@
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import { useNavigate, NavLink } from "react-router-dom"
 
 const logoPath = `${process.env.PUBLIC_URL}/assets/logo.png`
 const backgroundImageUrl = `${process.env.PUBLIC_URL}/assets/superman.png`
 
-const SignIn = () => {
+const SignIn = ({login}) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
   const [rememberMe, setRememberMe] = useState(false)
   const navigate = useNavigate()
+  const formRef = useRef()
 
-  const handleSignIn = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
-    navigate("/itemprotectedindex")
-  }
+    const formData = new FormData(formRef.current)
+    // create an object from the entries
+    const data = Object.fromEntries(formData)
+    // store user's info in format that can be used with JWT
+    const userInfo = {
+      user: { email: data.email, password: data.password } 
+   }
+    login(userInfo)
+    navigate("/")
+    e.target.reset() // resets the input field
+}
+  
 
   return (
     <div className="signup-container">
@@ -26,7 +37,7 @@ const SignIn = () => {
           <button className="social-button">Sign in with Facebook</button>
         </div>
         <div className="divider">OR</div>
-        <form onSubmit={handleSignIn}>
+        <form ref={formRef} onSubmit={handleSubmit}>
           <div className="input-group">
             <label>Email</label>
             <input

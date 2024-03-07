@@ -1,20 +1,32 @@
 import React, { useState } from "react"
 import { useNavigate, NavLink } from "react-router-dom"
+import { useRef } from "react"
 
 const logoPath = `${process.env.PUBLIC_URL}/assets/logo.png`
 const backgroundImageUrl = `${process.env.PUBLIC_URL}/assets/superman.png`
 
-const SignUp = () => {
+
+const SignUp = ({ signup }) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
   const [rememberMe, setRememberMe] = useState(false)
   const navigate = useNavigate()
+  const formRef = useRef()
+  
 
-  const handleSignUp = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
-  }
-
+    const formData = new FormData(formRef.current)
+    const data = Object.fromEntries(formData)
+    const userInfo = {
+    user: { email: data.email, password: data.password }
+    }
+    signup(userInfo)
+    navigate("/")
+    e.target.reset()
+}
+  
   return (
     <div className="signup-container">
       <div className="signup-form">
@@ -25,8 +37,8 @@ const SignUp = () => {
           <button className="social-button">Sign up with Facebook</button>
         </div>
         <div className="divider">OR</div>
-        <form onSubmit={handleSignUp}>
-          <div className="input-group">
+        <form ref={formRef} onSubmit={handleSubmit}>
+        <div className="input-group">
             <label>Email</label>
             <input
               type="email"

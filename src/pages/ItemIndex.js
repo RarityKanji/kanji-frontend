@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useParams, NavLink } from "react-router-dom"
-import mockCollectibles from "./mockCollectibles"
+
 
 const ItemIndex = () => {
   const { category } = useParams()
@@ -8,27 +8,30 @@ const ItemIndex = () => {
   const [searchTerm, setSearchTerm] = useState("")
   const [sortOrder, setSortOrder] = useState("asc")
   const [loading, setLoading] = useState(true)
+
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        setLoading(true)
-        if (category) {
-          const filteredItems = mockCollectibles.filter(
-            item => item.category.toLowerCase() === category.toLowerCase()
-          )
-          setItems(filteredItems)
-        } else {
-          console.error("Category parameter is undefined.")
+        setLoading(true);
+        const response = await fetch(`/api/items?category=${category}`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch items");
         }
+        const data = await response.json();
+        setItems(data);
         setLoading(false)
       } catch (error) {
         console.error("Error fetching items:", error)
-        setLoading(false)
+        setLoading(false);
       }
     }
-  
-    fetchItems()
-  }, [category])  
+
+    if (category) {
+      fetchItems();
+    } else {
+      console.error("Category parameter is undefined.");
+    }
+  }, [category]);
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value)
