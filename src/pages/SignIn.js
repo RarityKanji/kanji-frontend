@@ -1,31 +1,26 @@
-import React, { useState, useRef } from "react"
-import { useNavigate, NavLink } from "react-router-dom"
+import React, { useState, useRef } from "react";
+import { useNavigate, NavLink } from "react-router-dom";
 
-const logoPath = `${process.env.PUBLIC_URL}/assets/logo.png`
-const backgroundImageUrl = `${process.env.PUBLIC_URL}/assets/superman.png`
+const logoPath = `${process.env.PUBLIC_URL}/assets/logo.png`;
+const backgroundImageUrl = `${process.env.PUBLIC_URL}/assets/superman.png`;
 
-const SignIn = ({login}) => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [showPassword, setShowPassword] = useState(false)
-  const [rememberMe, setRememberMe] = useState(false)
-  const navigate = useNavigate()
-  const formRef = useRef()
+const SignIn = ({ login }) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
+  const navigate = useNavigate();
+  const formRef = useRef();
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    const formData = new FormData(formRef.current)
-    // create an object from the entries
-    const data = Object.fromEntries(formData)
-    // store user's info in format that can be used with JWT
+    e.preventDefault();
+    const formData = new FormData(formRef.current);
+    const data = Object.fromEntries(formData);
     const userInfo = {
-      user: { email: data.email, password: data.password } 
-   }
-    login(userInfo)
-    navigate("/")
-    e.target.reset() // resets the input field
-}
-  
+      user: { email: data.email, password: data.password },
+    };
+    login(userInfo);
+    navigate("/");
+    e.target.reset(); 
+  };
 
   return (
     <div className="signup-container">
@@ -43,9 +38,7 @@ const SignIn = ({login}) => {
             <input
               type="email"
               placeholder="example.email@gmail.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
+              name="email"
             />
           </div>
           <div className="input-group">
@@ -53,9 +46,7 @@ const SignIn = ({login}) => {
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
+              name="password"
             />
             <span
               className="toggle-password"
@@ -77,9 +68,7 @@ const SignIn = ({login}) => {
               Forgot password?
             </NavLink>
           </div>
-          <button type="submit" className="signup-button">
-            Sign In
-          </button>
+          <input type="submit" className="signup-button" value="Submit" />
         </form>
         <div className="sign-up-redirect">
           <p>
@@ -92,7 +81,7 @@ const SignIn = ({login}) => {
         style={{ backgroundImage: `url(${backgroundImageUrl})` }}
       ></div>
     </div>
-  )
-}
+  );
+};
 
-export default SignIn
+export default SignIn;

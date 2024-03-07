@@ -151,15 +151,14 @@ const App = () => {
         <Route path="/" element={<Home currentUser={currentUser} />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/itemnew" element={<ItemNew currentUser={currentUser} createCollectible={createCollectible}/>} />
-        <Route path="/itemprotectedindex" element={<ItemProtectedIndex currentUser={currentUser} collectibles={collectibles}
-        currentUser={currentUser}/>} />
-        <Route path="/itemedit/:id" element={<ItemEdit />} />
-        <Route path="/items/:itemId" element={<ItemShow />} />
-        <Route path="/collectibles/:category" element={<ItemIndex />} />
+        <Route path="/itemprotectedindex" element={<ItemProtectedIndex currentUser={currentUser} collectibles={collectibles} />} />
+        <Route path="/itemedit/:id" element={<ItemEdit currentUser={currentUser} />} />
+        <Route path="/itemshow/:id" element={<ItemShow currentUser={currentUser} collectibles={collectibles} />} />
+        <Route path="/collectibles/:category" element={<ItemIndex collectibles={collectibles} />} />
         <Route path="/signup" element={<SignUp  signup={signup} />} />
         <Route path="/login" element={<SignIn login={login} />} />
-        <Route path="*" element={<NotFound />} />
         <Route path="/itemindex" element={<ItemIndex collectibles={collectibles} />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>
