@@ -14,6 +14,9 @@ import { useNavigate } from "react-router-dom"
 import ItemProtectedIndex from "./pages/ItemProtectedIndex"
 import SignUp from "./pages/SignUp"
 import SignIn from "./pages/SignIn"
+import ContactUs from "./pages/ContactUs"
+import TermsOfUse from "./pages/TermsOfUse"
+import PrivacyPolicy from "./pages/PrivacyPolicy"
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null)
@@ -141,6 +144,7 @@ const App = () => {
     })
     .then((response) => response.json())
     .then(() => readCollectibles())
+    .then(() => navigate("/collectibles/books"))
     .catch((errors) => console.log("delete errors:", errors))
   }
 
@@ -152,12 +156,14 @@ const App = () => {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/itemnew" element={<ItemNew currentUser={currentUser} createCollectible={createCollectible}/>} />
         <Route path="/itemprotectedindex" element={<ItemProtectedIndex currentUser={currentUser} collectibles={collectibles} />} />
-        <Route path="/itemedit/:id" element={<ItemEdit currentUser={currentUser} />} />
-        <Route path="/itemshow/:id" element={<ItemShow currentUser={currentUser} collectibles={collectibles} />} />
+        <Route path="/itemedit/:id" element={<ItemEdit currentUser={currentUser} editCollectible={editCollectible} collectibles={collectibles} />} />
+        <Route path="/itemshow/:id" element={<ItemShow currentUser={currentUser} collectibles={collectibles} deleteCollectible={deleteCollectible} />} />
         <Route path="/collectibles/:category" element={<ItemIndex collectibles={collectibles} />} />
         <Route path="/signup" element={<SignUp  signup={signup} />} />
         <Route path="/login" element={<SignIn login={login} />} />
-        <Route path="/itemindex" element={<ItemIndex collectibles={collectibles} />} />
+        <Route path="/contact-us" element={<ContactUs  />}/>
+        <Route path="privacy-policy" element={<PrivacyPolicy/>} />
+        <Route path="terms-of-use" element={<TermsOfUse />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

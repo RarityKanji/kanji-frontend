@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react"
+import { useParams, useNavigate } from "react-router-dom"
 
-const ItemEdit = () => {
-  const { itemId } = useParams();
-  const navigate = useNavigate();
+const ItemEdit = ({collectibles, editCollectible}) => {
+  const { id } = useParams()
+  const navigate = useNavigate()
   const [item, setItem] = useState({
     name: "",
     description: "",
@@ -12,63 +12,61 @@ const ItemEdit = () => {
     condition: "",
     authenticity: "",
     category: "",
-  });
-  const [isLoading, setIsLoading] = useState(true);
+  })
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const fetchItemDetails = async () => {
       try {
-        setIsLoading(true);
-        const response = await fetch(`/api/items/${itemId}`);
-        if (!response.ok) throw new Error("Failed to fetch item details.");
-        const data = await response.json();
-        setItem(data);
+        setIsLoading(true)
+        const response = await fetch(`/api/items/${id}`)
+        if (!response.ok) throw new Error("Failed to fetch item details.")
+        const data = await response.json()
+        setItem(data)
       } catch (error) {
-        console.error("Error fetching item:", error);
-        navigate('/not-found'); // Or show an error message
+        console.error("Error fetching item:", error)
+        navigate('/not-found')
       } finally {
-        setIsLoading(false);
+        setIsLoading(false)
       }
-    };
+    }
 
-    fetchItemDetails();
-  }, [itemId, navigate]);
+    fetchItemDetails()
+  }, [id, navigate])
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setItem(prevItem => ({ ...prevItem, [name]: value }));
-  };
+    const { name, value } = e.target
+    setItem(prevItem => ({ ...prevItem, [name]: value }))
+  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
-      const response = await fetch(`/api/items/${itemId}`, {
+      const response = await fetch(`/api/items/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(item),
-      });
-      if (!response.ok) throw new Error('Failed to update item.');
-      navigate(`/items/${itemId}`); // Redirect to the item detail view
+      })
+      if (!response.ok) throw new Error('Failed to update item.')
+      navigate(`/items/${id}`)
     } catch (error) {
-      console.error("Error updating item:", error);
-      // Handle update error (e.g., show feedback message)
+      console.error("Error updating item:", error)
     }
-  };
+  }
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`/api/items/${itemId}`, {
+      const response = await fetch(`/api/items/${id}`, {
         method: 'DELETE',
-      });
-      if (!response.ok) throw new Error('Failed to delete item.');
-      navigate('/'); // Redirect to the home or listing page
+      })
+      if (!response.ok) throw new Error('Failed to delete item.')
+      navigate('/')
     } catch (error) {
-      console.error("Error deleting item:", error);
-      // Handle delete error
+      console.error("Error deleting item:", error)
     }
-  };
+  }
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div>Loading...</div>
 
   return (
     <form onSubmit={handleSubmit}>
@@ -93,7 +91,7 @@ const ItemEdit = () => {
       <button type="submit">Update Item</button>
       <button type="button" onClick={handleDelete}>Delete Item</button>
     </form>
-  );
-};
+  )
+}
 
-export default ItemEdit;
+export default ItemEdit

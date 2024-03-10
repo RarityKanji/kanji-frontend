@@ -1,54 +1,51 @@
-import React, { useState, useEffect } from "react";
-import { useParams, NavLink } from "react-router-dom";
+import React, { useState, useEffect } from "react"
+import { useParams, NavLink } from "react-router-dom"
 
 const ItemIndex = ({ collectibles, setCollectibles }) => {
-  const { category } = useParams();
-  // const [items, setItems] = useState([])
-  console.log(collectibles);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [sortOrder, setSortOrder] = useState("asc");
-  const [loading, setLoading] = useState(true);
+  const { category } = useParams()
+  const [searchTerm, setSearchTerm] = useState("")
+  const [sortOrder, setSortOrder] = useState("asc")
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchCollectibles = async () => {
       try {
-        setLoading(true);
-        const response = await fetch(`/api/collectibles?category=${category}`);
+        setLoading(true)
+        const response = await fetch(`/api/collectibles?category=${category}`)
         if (!response.ok) {
-          throw new Error("Failed to fetch items");
+          throw new Error("Failed to fetch items")
         }
-        const collectibles = await response.json();
-        setCollectibles(collectibles);
-        setLoading(false);
+        const collectibles = await response.json()
+        setCollectibles(collectibles)
+        setLoading(false)
       } catch (error) {
-        console.error("Error fetching items:", error);
-        setLoading(false);
+        console.error("Error fetching items:", error)
+        setLoading(false)
       }
-    };
+    }
 
     if (category) {
-      fetchCollectibles();
+      fetchCollectibles()
     } else {
-      console.error("Category parameter is undefined.");
+      console.error("Category parameter is undefined.")
     }
-  }, [category]);
-  console.log(category);
+  }, [category])
 
   const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
+    setSearchTerm(e.target.value)
+  }
 
   const sortCollectibles = (a, b) => {
-    const priceA = parseFloat(a.price.replace(/,/g, ""));
-    const priceB = parseFloat(b.price.replace(/,/g, ""));
-    return sortOrder === "asc" ? priceA - priceB : priceB - priceA;
-  };
+    const priceA = parseFloat(a.price.replace(/,/g, ""))
+    const priceB = parseFloat(b.price.replace(/,/g, ""))
+    return sortOrder === "asc" ? priceA - priceB : priceB - priceA
+  }
 
   const filteredCollectibles = collectibles
     .filter((collectible) =>
-      collectible.name.toLowerCase().includes(searchTerm.toLowerCase())
+      collectible?.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
-    .sort(sortCollectibles);
+    .sort(sortCollectibles)
 
   return (
     <div className="item-index-container">
@@ -82,15 +79,15 @@ const ItemIndex = ({ collectibles, setCollectibles }) => {
         <div className="items-grid">
           {filteredCollectibles.length > 0 ? (
             filteredCollectibles.map((collectible) => (
-              <div key={collectible.id} className="collectible-item">
+              <div key={collectible?.id} className="collectible-item">
                 <h3>{collectible.name}</h3>
                 <img
-                  src={collectible.image}
-                  alt={collectible.name}
+                  src={collectible?.image}
+                  alt={collectible?.name}
                   style={{ width: "100px", height: "100px" }}
                 />
-                <p>Price: {collectible.price}</p>
-                <p>Condition: {collectible.condition}</p>
+                <p>Price: {collectible?.price}</p>
+                <p>Condition: {collectible?.condition}</p>
                 <NavLink
                   to={`/itemshow/${collectible?.id}`}
                   className="view-details-link"
@@ -105,7 +102,7 @@ const ItemIndex = ({ collectibles, setCollectibles }) => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ItemIndex;
+export default ItemIndex

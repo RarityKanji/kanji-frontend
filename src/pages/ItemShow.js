@@ -1,40 +1,26 @@
-import React, { useState } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
-import { FaShoppingCart, FaCheck, FaEnvelope } from "react-icons/fa";
-
-// Assume mock data and setItems function are passed as props
-const ItemShow = ({ collectibles, setCollectibles }) => {
-  const { collectibleId } = useParams();
-  const navigate = useNavigate();
-  // const [collectible, setCollectible] = useState(null);
-  const [mainImage, setMainImage] = useState('');
-  const [quantity, setQuantity] = useState(1);
+import React, { useState } from "react"
+import { useParams, useNavigate, Link } from "react-router-dom"
+import { FaShoppingCart, FaCheck, FaEnvelope } from "react-icons/fa"
 
 
-    const collectible = collectibles?.find(collectible => collectible?.id.toString() === collectibleId);
-    // if (foundCollectible) {
-    //   setCollectible(foundCollectible);
-    //   setMainImage(foundCollectible.images && foundCollectible.images.length > 0 ? foundCollectible.images[0] : '');
-    // }
+const ItemShow = ({ collectibles, deleteCollectible }) => {
+  const { id } = useParams()
+  const navigate = useNavigate()
+  const [mainImage, setMainImage] = useState('')
+  const [quantity, setQuantity] = useState(1)
+
+  const collectible = collectibles?.find(item => item?.id === +id)
 
   const handleQuantityChange = (change) => {
-    setQuantity(prevQuantity => Math.max(1, prevQuantity + change));
-  };
+    setQuantity(prevQuantity => Math.max(1, prevQuantity + change))
+  }
+  const emailSubject = encodeURIComponent(`Inquiry about ${collectible?.name}`)
+  const emailBody = encodeURIComponent(`I am interested in your ${collectible?.name} listed for ${collectible?.price}. Could you provide more information?`)
 
   const handleDelete = () => {
-    // Filter out the item to delete
-    const updatedCollectibles = collectibles.filter(collectible => collectible?.id.toString() !== collectibleId);
-    setCollectibles(updatedCollectibles); // Update the mock data state
-    navigate('/'); // Redirect user after deletion
-  };
-
-  // if (!collectible) {
-  //   return <div>Loading item details...</div>;
-  // }
-
-  const emailSubject = encodeURIComponent(`Inquiry about ${collectible?.name}`);
-  const emailBody = encodeURIComponent(`I am interested in your ${collectible?.name} listed for ${collectible?.price}. Could you provide more information?`);
-
+    deleteCollectible(id)
+    navigate()
+  }
   return (
     <div className="item-detail-container">
       <div className="breadcrumb">
@@ -47,9 +33,8 @@ const ItemShow = ({ collectibles, setCollectibles }) => {
         <div className="item-images">
           <img src={mainImage} alt={collectible?.name} className="main-image" />
           <div className="thumbnail-images">
-            {collectible?.images.map((img, index) => (
-              <img key={index} src={img} alt={`Thumbnail ${index + 1}`} onClick={() => setMainImage(img)} />
-            ))}
+    
+              <img src={collectible.image} alt={collectible.name} onClick={() => setMainImage(collectible.image)} />
           </div>
         </div>
         <div className="item-info">
@@ -72,12 +57,12 @@ const ItemShow = ({ collectibles, setCollectibles }) => {
           </div>
           <button className="add-to-bag"><FaShoppingCart /> Add to bag</button>
           <button className="checkout">Checkout</button>
-          {/* Add a delete button */}
+          {/* <button onClick={handleDelete} className="delete-item">Edit Item</button> */}
           <button onClick={handleDelete} className="delete-item">Delete Item</button>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ItemShow;
+export default ItemShow

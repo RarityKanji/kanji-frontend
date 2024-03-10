@@ -1,29 +1,28 @@
-import React, { useState, useRef } from "react";
-import { useNavigate, NavLink } from "react-router-dom";
+import React, { useState, useRef } from "react"
+import { useNavigate, NavLink } from "react-router-dom"
 
-const logoPath = `${process.env.PUBLIC_URL}/assets/logo.png`;
-const backgroundImageUrl = `${process.env.PUBLIC_URL}/assets/superman.png`;
+const logoPath = `${process.env.PUBLIC_URL}/assets/logo.png`
+const backgroundImageUrl = `${process.env.PUBLIC_URL}/assets/superman.png`
 
 const SignUp = ({ signup }) => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false); // Keeping rememberMe state since it's being used in this component
-  const navigate = useNavigate();
-  const formRef = useRef();
+  const [showPassword, setShowPassword] = useState(false)
+  const [rememberMe, setRememberMe] = useState(false)
+  const navigate = useNavigate()
+  const formRef = useRef()
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData(formRef.current);
-    const data = Object.fromEntries(formData);
+    e.preventDefault()
+    const formData = new FormData(formRef.current)
+    const data = Object.fromEntries(formData)
     const userInfo = {
       user: { email: data.email, password: data.password }
-    };
+    }
     signup(userInfo).then(() => {
-      navigate("/"); // Assuming signup is an asynchronous operation
+      navigate("/")
     }).catch(error => {
-      // Handle error here
-      console.error('Signup failed', error);
-    });
-  };
+      console.error('Signup failed', error)
+    })
+  }
 
   return (
     <div className="signup-container">
@@ -39,7 +38,7 @@ const SignUp = ({ signup }) => {
           <div className="input-group">
             <label>Email</label>
             <input
-              name="email" // Add name attribute for FormData
+              name="email"
               type="email"
               placeholder="example.email@gmail.com"
               required
@@ -48,7 +47,7 @@ const SignUp = ({ signup }) => {
           <div className="input-group">
             <label>Password</label>
             <input
-              name="password" // Add name attribute for FormData
+              name="password"
               type={showPassword ? "text" : "password"}
               placeholder="Enter at least 8+ characters"
               required
@@ -57,7 +56,6 @@ const SignUp = ({ signup }) => {
               {showPassword ? "Hide" : "Show"}
             </span>
           </div>
-          {/* Since Remember Me and Forgot Password are placeholders, omit state management for these */}
           <button type="submit" className="signup-button">Sign up</button>
         </form>
         <div className="sign-in-redirect">
@@ -66,7 +64,7 @@ const SignUp = ({ signup }) => {
       </div>
       <div className="signup-image" style={{ backgroundImage: `url(${backgroundImageUrl})` }}></div>
     </div>
-  );
-};
+  )
+}
 
-export default SignUp;
+export default SignUp
