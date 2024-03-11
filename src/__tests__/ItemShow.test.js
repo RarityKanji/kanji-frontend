@@ -13,7 +13,8 @@ describe("<ItemShow />", () => {
         </Routes>
       </MemoryRouter>
     )
-    const itemShow = screen.getByText(/loading item details\.\.\./i)
+    screen.logTestingPlaygroundURL()
+    const itemShow = screen.getByText(/condition:/i)
     expect(itemShow).toBeInTheDocument()
   })
 })

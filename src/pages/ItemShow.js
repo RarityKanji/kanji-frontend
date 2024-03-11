@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { useParams, useNavigate, Link } from "react-router-dom"
+import { useParams, useNavigate, Link, NavLink } from "react-router-dom"
 import { FaShoppingCart, FaCheck, FaEnvelope } from "react-icons/fa"
 
 
@@ -34,7 +34,7 @@ const ItemShow = ({ collectibles, deleteCollectible }) => {
           <img src={mainImage} alt={collectible?.name} className="main-image" />
           <div className="thumbnail-images">
     
-              <img src={collectible.image} alt={collectible.name} onClick={() => setMainImage(collectible.image)} />
+              <img src={collectible?.image} alt={collectible?.name} onClick={() => setMainImage(collectible?.image)} />
           </div>
         </div>
         <div className="item-info">
@@ -57,7 +57,11 @@ const ItemShow = ({ collectibles, deleteCollectible }) => {
           </div>
           <button className="add-to-bag"><FaShoppingCart /> Add to bag</button>
           <button className="checkout">Checkout</button>
-          {/* <button onClick={handleDelete} className="delete-item">Edit Item</button> */}
+          <button>
+          <NavLink to={`/itemedit/${collectible?.id}`} className="nav-link">
+            Edit Your Collectible
+          </NavLink>
+          </button>
           <button onClick={handleDelete} className="delete-item">Delete Item</button>
         </div>
       </div>
