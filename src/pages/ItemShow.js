@@ -1,63 +1,53 @@
-import React, { useState, useEffect } from "react"
-import { useParams, Link } from "react-router-dom"
-import { FaShoppingCart, FaCheck, FaEnvelope } from "react-icons/fa" 
+import React, { useState } from "react"
+import { useParams, useNavigate, Link, NavLink } from "react-router-dom"
+import { FaShoppingCart, FaCheck, FaEnvelope } from "react-icons/fa"
 
-const ItemShow = () => {
-  const { itemId } = useParams()
-  const [item, setItem] = useState(null)
+
+const ItemShow = ({ collectibles, deleteCollectible }) => {
+  const { id } = useParams()
+  const navigate = useNavigate()
   const [mainImage, setMainImage] = useState('')
   const [quantity, setQuantity] = useState(1)
 
-  useEffect(() => {
-    fetch(`http://localhost:3000/items/${itemId}`)
-      .then(response => response.json())
-      .then(data => {
-        console.log("Data:", data)
-        setItem(data)
-        setMainImage(data.images[0])
-      })
-      .catch(error => console.error("Couldn't fetch item data:", error))
-  }, [itemId])
+  const collectible = collectibles?.find(item => item?.id === +id)
 
-  if (!item) {
-    return <div>Loading item details...</div>
-  }
-  
   const handleQuantityChange = (change) => {
     setQuantity(prevQuantity => Math.max(1, prevQuantity + change))
   }
+  const emailSubject = encodeURIComponent(`Inquiry about ${collectible?.name}`)
+  const emailBody = encodeURIComponent(`I am interested in your ${collectible?.name} listed for ${collectible?.price}. Could you provide more information?`)
 
-  const emailSubject = encodeURIComponent(`Inquiry about ${item.name}`);
-  const emailBody = encodeURIComponent(`I am interested in your ${item.name} listed for ${item.price}. Could you provide more information?`);
-  
+  const handleDelete = () => {
+    deleteCollectible(id)
+    navigate()
+  }
   return (
     <div className="item-detail-container">
       <div className="breadcrumb">
         <Link to="/">Collectibles</Link> <span>›</span>
         <Link to="/category">Classes</Link> <span>›</span>
-        <Link to={`/category/${item.category}`}>{item.category}</Link> <span>›</span>
+        <Link to={`/category/${collectible?.category}`}>{collectible?.category}</Link> <span>›</span>
         <span>Product Detail</span>
       </div>
       <div className="item-detail">
         <div className="item-images">
-          <img src={mainImage} alt={item.name} className="main-image" />
+          <img src={mainImage} alt={collectible?.name} className="main-image" />
           <div className="thumbnail-images">
-            {item.images.map((img, index) => (
-              <img key={index} src={img} alt={`Thumbnail ${index + 1}`} onClick={() => setMainImage(img)} />
-            ))}
+    
+              <img src={collectible?.image} alt={collectible?.name} onClick={() => setMainImage(collectible?.image)} />
           </div>
         </div>
         <div className="item-info">
-          <h2>{item.name}</h2>
-          <p className="price">${item.price}</p>
-          <p>{item.description}</p>
-          <p>Condition: {item.condition}</p>
-          <p>Authenticity: {item.authenticity}</p>
+          <h2>{collectible?.name}</h2>
+          <p className="price">${collectible?.price}</p>
+          <p>{collectible?.description}</p>
+          <p>Condition: {collectible?.condition}</p>
+          <p>Authenticity: {collectible?.authenticity}</p>
           <div className="checkmarks">
             <p><FaCheck /> Free shipping on orders over $49USD.</p>
             <p><FaCheck /> Free + easy returns.</p>
           </div>
-          <a href={`mailto:${item.sellerEmail}?subject=${emailSubject}&body=${emailBody}`} className="contact-seller-button">
+          <a href={`mailto:${collectible?.sellerEmail}?subject=${emailSubject}&body=${emailBody}`} className="contact-seller-button">
             <FaEnvelope /> Contact Seller
           </a>
           <div className="quantity-selector">
@@ -67,6 +57,12 @@ const ItemShow = () => {
           </div>
           <button className="add-to-bag"><FaShoppingCart /> Add to bag</button>
           <button className="checkout">Checkout</button>
+          <button>
+          <NavLink to={`/itemedit/${collectible?.id}`} className="nav-link">
+            Edit Your Collectible
+          </NavLink>
+          </button>
+          <button onClick={handleDelete} className="delete-item">Delete Item</button>
         </div>
       </div>
     </div>

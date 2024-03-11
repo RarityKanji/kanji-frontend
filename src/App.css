@@ -448,3 +448,86 @@ social-button {
 .divider:after {
   margin-left: .5em;
 }
+
+/* Contact Page Styles */
+.contact-team-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 30px;
+	justify-content: center;
+	margin-bottom: 6rem;
+	padding: 2rem;
+}
+.contact-team-card {
+	border-radius: 8px;
+	background: #ffffff;
+	box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+	display: flex;
+	flex-direction: column;
+	max-width: 300px;
+	overflow: hidden;
+	transition: all 0.3s ease;
+	width: 100%;
+}
+.contact-team-card:hover {
+	box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+	transform: translateY(-10px);
+}
+.contact-card-img {
+	height: 260px; 
+	width: auto; 
+	object-fit: cover; 
+  }
+.contact-card-body {
+  transition: background-color 0.3s ease;
+	background-color: #f9f9fb;
+	padding: 15px;
+}
+.contact-card-title {
+	margin: 10px 0;
+	font-weight: bold;
+	text-align: center;
+}
+.contact-card-text {
+	font-size: 1rem;
+	color: #555;
+	text-align: left;
+}
+.contact-card-links {
+	padding-top: 15px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	justify-content: center;
+}
+.contact-link-button-linkedIn, .contact-link-button-github, .contact-link-button-email {
+	color: white;
+	text-decoration: none;
+	background-color: #007bff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	padding: 10px 12px;
+	transition: all 0.2s ease;
+}
+.contact-link-button-linkedIn {
+	color: white;
+	background-color: #0077b5;
+}
+.contact-link-button-linkedIn:hover {
+	background-color: #005983;
+}
+.contact-link-button-github {
+	color: white;
+	background-color: #6e5494;
+}
+.contact-link-button-github:hover {
+	background-color: #5d4373;
+}
+.contact-link-button-email {
+	color: white;
+	background-color: #34b7f1;
+}
+.contact-link-button-email:hover {
+	background-color: #2a8db8;
+}

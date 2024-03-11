@@ -1,19 +1,25 @@
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import { useNavigate, NavLink } from "react-router-dom"
 
 const logoPath = `${process.env.PUBLIC_URL}/assets/logo.png`
 const backgroundImageUrl = `${process.env.PUBLIC_URL}/assets/superman.png`
 
-const SignIn = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+const SignIn = ({ login }) => {
   const [showPassword, setShowPassword] = useState(false)
   const [rememberMe, setRememberMe] = useState(false)
   const navigate = useNavigate()
+  const formRef = useRef()
 
-  const handleSignIn = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
-    navigate("/itemprotectedindex")
+    const formData = new FormData(formRef.current)
+    const data = Object.fromEntries(formData)
+    const userInfo = {
+      user: { email: data.email, password: data.password },
+    }
+    login(userInfo)
+    navigate("/")
+    e.target.reset() 
   }
 
   return (
@@ -26,15 +32,13 @@ const SignIn = () => {
           <button className="social-button">Sign in with Facebook</button>
         </div>
         <div className="divider">OR</div>
-        <form onSubmit={handleSignIn}>
+        <form ref={formRef} onSubmit={handleSubmit}>
           <div className="input-group">
             <label>Email</label>
             <input
               type="email"
               placeholder="example.email@gmail.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
+              name="email"
             />
           </div>
           <div className="input-group">
@@ -42,9 +46,7 @@ const SignIn = () => {
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
+              name="password"
             />
             <span
               className="toggle-password"
@@ -66,9 +68,7 @@ const SignIn = () => {
               Forgot password?
             </NavLink>
           </div>
-          <button type="submit" className="signup-button">
-            Sign In
-          </button>
+          <input type="submit" className="signup-button" value="Submit" />
         </form>
         <div className="sign-up-redirect">
           <p>

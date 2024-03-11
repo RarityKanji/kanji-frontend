@@ -1,7 +1,6 @@
 import React from "react"
 import { NavLink } from "react-router-dom"
 
-// GIPHY URL
 const gifHome = "https://i.giphy.com/PipqS8rFolj0393M1O.webp"
 
 const Home = () => {
