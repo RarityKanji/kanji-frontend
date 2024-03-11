@@ -46,6 +46,11 @@ const Header = ({ currentUser, logout }) => {
             <NavItem>
               <button onClick={handleLogout} className="nav-link btn-link">Log Out</button>
             </NavItem>
+            
+              <NavLink to="/itemnew">
+              <button className="nav-link btn-link">Create</button>
+              </NavLink>
+           
           </>
         ) : (
           <>

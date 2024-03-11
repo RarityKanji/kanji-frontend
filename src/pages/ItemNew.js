@@ -21,7 +21,7 @@ const ItemNew = ({ createCollectible, currentUser }) => {
 
   const handleSubmit = () => {
     createCollectible(myCollectible)
-    navigate("/collectibles")
+    navigate("/collectibles/books")
   }
 
   return (
