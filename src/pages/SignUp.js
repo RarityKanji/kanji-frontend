@@ -15,15 +15,15 @@ const SignUp = ({ signup }) => {
   const handleSignUp = (e) => {
     e.preventDefault()
     const formData = new FormData(formRef.current)
-  const data = Object.fromEntries(formData)
-  const userInfo = {
-    user: { email: data.email, password: data.password }
+    const data = Object.fromEntries(formData)
+    const userInfo = {
+      user: { email: data.email, password: data.password }
+    }
+    signup(userInfo)
+    navigate("/")
+    e.target.reset() 
   }
-  signup(userInfo)
-  navigate("/")
-  e.target.reset() 
-}
-}
+
 
   return (
     <div className="signup-container">
@@ -40,8 +40,7 @@ const SignUp = ({ signup }) => {
             <input
               type="email"
               placeholder="example.email@gmail.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name="email"
               required
             />
           </div>
@@ -50,8 +49,14 @@ const SignUp = ({ signup }) => {
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Enter at least 8+ characters"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              name="password"
+              required
+            />
+            <label>Confirm Password : {" "}</label>
+            <input
+              type="password"
+              placeholder="confirm password"
+              name="password_confirmation"
               required
             />
             <span
