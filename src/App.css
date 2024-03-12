@@ -549,7 +549,8 @@ h6 {
 }
 
 .view-details-link:hover {
-  background-color: #08809a;
+  background-color: #0a2e36;
+  color: #fff;
 }
 
 @media (max-width: 768px) {
@@ -693,6 +694,7 @@ h6 {
 
 .contact-seller-button:hover, .add-to-bag:hover, .checkout:hover {
   background-color: #0a2e36; 
+  color: #fff;
 }
 
 .quantity-selector {
@@ -974,6 +976,157 @@ margin-bottom: 20px;
   color: #051824; 
   text-decoration: underline; 
 }
+
+/* ItemEdit Styling */
+.form-edit-container {
+  max-width: 800px;
+  margin: 40px auto;
+  background-color: #fff;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  border: 1px solid #eaeaea; 
+}
+
+.form-edit-container h1 {
+  color: #051824; 
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 600;
+}
+
+.form-edit {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  color: #666;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.form-group input, .form-group select {
+  font-size: 16px;
+  padding: 12px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: #fafafa; 
+}
+
+.form-group input:focus, .form-group select:focus {
+  border-color: #0a2e36; 
+  outline: none;
+}
+
+.edit-collectible-button {
+  grid-column: span 2; 
+  font-size: 18px;
+  padding: 12px 0;
+  background-color: #051824; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  text-transform: uppercase; 
+  letter-spacing: 1px; 
+}
+
+.edit-collectible-button:hover {
+  background-color: #0a2e36; 
+}
+
+@media (max-width: 768px) {
+  .edit-collectible-button {
+    grid-column: 1 / -1; 
+  }
+}
+
+/* ItemNew Styling */
+.form-container {
+  max-width: 800px;
+  margin: 40px auto;
+  background-color: #fff;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  border: 1px solid #eaeaea;
+}
+
+.form-container h1 {
+  color: #051824; 
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 600;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  color: #666;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.form-group input {
+  font-size: 16px;
+  padding: 12px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: #fafafa; 
+}
+
+.form-group input:focus {
+  border-color: #0a2e36; 
+  outline: none;
+}
+
+.create-collectible-button {
+  grid-column: span 2; 
+  font-size: 18px;
+  padding: 12px 0;
+  background-color: #051824; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  text-transform: uppercase; 
+  letter-spacing: 1px; 
+}
+
+.create-collectible-button:hover {
+  background-color: #0a2e36; 
+}
+
+@media (max-width: 768px) {
+  .create-collectible-button {
+    grid-column: 1 / -1; 
+  }
+}
+
 
 /* Contact Page Styles */
 .contact-team-container {

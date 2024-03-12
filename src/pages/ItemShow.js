@@ -1,13 +1,19 @@
 import React, { useState } from "react"
 import { useParams, useNavigate, Link } from "react-router-dom"
-import { FaShoppingCart, FaCheck, FaEnvelope } from "react-icons/fa"
+import {
+  FaShoppingCart,
+  FaCheck,
+  FaEnvelope,
+  FaEdit,
+  FaTrash,
+} from "react-icons/fa"
+import { confirmAlert } from "react-confirm-alert"
 
-const ItemShow = ({ collectibles }) => {
+const ItemShow = ({ collectibles, deleteCollectible, currentUser }) => {
   const { id } = useParams()
   const navigate = useNavigate()
   const [mainImage, setMainImage] = useState("")
   const [quantity, setQuantity] = useState(1)
-
   const collectible = collectibles?.find((item) => item?.id === +id)
 
   const handleQuantityChange = (change) => {
@@ -17,6 +23,32 @@ const ItemShow = ({ collectibles }) => {
   const emailBody = encodeURIComponent(
     `I am interested in your ${collectible?.name} listed for ${collectible?.price}. Could you provide more information?`
   )
+  const isOwner = currentUser && collectible?.user_id === currentUser.id
+
+  const handleDelete = () => {
+    confirmAlert({
+      title: "Confirm to delete",
+      message: "Are you sure you want to delete this item?",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: async () => {
+            try {
+              await deleteCollectible(id)
+              navigate("/collectibles/:category")
+            } catch (error) {
+              console.error("Deletion failed", error)
+            }
+          },
+        },
+        {
+          label: "No",
+        },
+      ],
+    })
+  }
+
+  if (!collectible) return <p>Loading...</p>
 
   return (
     <div className="item-detail-container">
@@ -70,6 +102,16 @@ const ItemShow = ({ collectibles }) => {
             </button>
             <button className="checkout">Trade</button>
             <button className="checkout">Buy now</button>
+            {isOwner && (
+              <div className="item-owner-actions">
+                <Link to={`/itemedit/${id}`} className="edit-button">
+                  <FaEdit /> Edit
+                </Link>
+                <button onClick={handleDelete} className="delete-button">
+                  <FaTrash /> Delete
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
