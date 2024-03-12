@@ -97,7 +97,7 @@ const ItemEdit = ({ collectibles, editCollectible }) => {
         />
       </FormGroup>
       <Button onClick={handleSubmit} name="submit">
-        Submit Your edit collectible
+        Edit Collectible
       </Button>
     </Form>
   )

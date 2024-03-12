@@ -1,51 +1,52 @@
-import React, { useState, useEffect } from "react"
-import { useParams, NavLink } from "react-router-dom"
+import React, { useState, useEffect } from "react";
+import { useParams, NavLink } from "react-router-dom";
 
 const ItemIndex = ({ collectibles, setCollectibles }) => {
-  const { category } = useParams()
-  const [searchTerm, setSearchTerm] = useState("")
-  const [sortOrder, setSortOrder] = useState("asc")
-  const [loading, setLoading] = useState(true)
+  const { category } = useParams();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortOrder, setSortOrder] = useState("asc");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchCollectibles = async () => {
       try {
-        setLoading(true)
-        const response = await fetch(`/api/collectibles?category=${category}`)
-        if (!response.ok) {
-          throw new Error("Failed to fetch items")
+        setLoading(true);
+        const baseUrl = "http://localhost:3000";
+        let url = `${baseUrl}/collectibles`;
+        if (category) {
+          url += `?category=${category}`;
         }
-        const collectibles = await response.json()
-        setCollectibles(collectibles)
-        setLoading(false)
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error("Failed to fetch items");
+        }
+        const collectibles = await response.json();
+        setCollectibles(collectibles);
+        setLoading(false);
       } catch (error) {
-        console.error("Error fetching items:", error)
-        setLoading(false)
+        console.error("Error fetching items:", error);
+        setLoading(false);
       }
-    }
+    };
 
-    if (category) {
-      fetchCollectibles()
-    } else {
-      console.error("Category parameter is undefined.")
-    }
-  }, [category])
+    fetchCollectibles();
+  }, [category]);
 
   const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value)
-  }
+    setSearchTerm(e.target.value);
+  };
 
   const sortCollectibles = (a, b) => {
-    const priceA = parseFloat(a.price.replace(/,/g, ""))
-    const priceB = parseFloat(b.price.replace(/,/g, ""))
-    return sortOrder === "asc" ? priceA - priceB : priceB - priceA
-  }
+    const priceA = parseFloat(a.price.replace(/,/g, ""));
+    const priceB = parseFloat(b.price.replace(/,/g, ""));
+    return sortOrder === "asc" ? priceA - priceB : priceB - priceA;
+  };
 
   const filteredCollectibles = collectibles
     .filter((collectible) =>
       collectible?.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
-    .sort(sortCollectibles)
+    .sort(sortCollectibles);
 
   return (
     <div className="item-index-container">
@@ -74,7 +75,7 @@ const ItemIndex = ({ collectibles, setCollectibles }) => {
         </div>
       </div>
       {loading ? (
-        <p>Loading...</p>
+        <div className="spinner-message">Your treasures await...</div>
       ) : (
         <div className="items-grid">
           {filteredCollectibles.length > 0 ? (
@@ -102,7 +103,7 @@ const ItemIndex = ({ collectibles, setCollectibles }) => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default ItemIndex
+export default ItemIndex;

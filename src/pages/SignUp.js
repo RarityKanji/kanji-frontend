@@ -1,8 +1,7 @@
 import React, { useState, useRef } from "react"
 import { useNavigate, NavLink } from "react-router-dom"
 
-const logoPath = `${process.env.PUBLIC_URL}/assets/logo.png`
-const backgroundImageUrl = `${process.env.PUBLIC_URL}/assets/superman.png`
+const backgroundImageUrl = `${process.env.PUBLIC_URL}/assets/signup.png`
 
 const SignUp = ({ signup }) => {
   const [showPassword, setShowPassword] = useState(false)
@@ -27,7 +26,6 @@ const SignUp = ({ signup }) => {
   return (
     <div className="signup-container">
       <div className="signup-form">
-        <img src={logoPath} alt="Kanji Logo" className="logo" />
         <h1>Get started now</h1>
         <div className="social-buttons">
           <button className="social-button">Sign up with Google</button>

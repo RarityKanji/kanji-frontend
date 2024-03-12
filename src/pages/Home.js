@@ -1,9 +1,20 @@
-import React from "react"
-import { NavLink } from "react-router-dom"
+import React, { useEffect } from "react"
+import { NavLink, useLocation } from "react-router-dom"
 
 const gifHome = `${process.env.PUBLIC_URL}/assets/jumbotron.png`
 
 const Home = () => {
+  const location = useLocation()
+
+  useEffect(() => {
+    if (location.state?.scrollTo === "classes") {
+      const sectionElement = document.getElementById("classes")
+      if (sectionElement) {
+        sectionElement.scrollIntoView({ behavior: "smooth", block: "start" })
+      }
+    }
+  }, [location.state])
+
   return (
 <div>
       <div className="intro-section">
@@ -21,7 +32,7 @@ const Home = () => {
           <div className="service-card">
             <h3>Simple and Intuitive</h3>
             <p>
-              Easy collectible management
+              Easy collectible management.
             </p>
           </div>
           <div className="service-card">
