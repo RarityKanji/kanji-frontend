@@ -1,17 +1,30 @@
-import React from "react"
-import { NavLink } from "react-router-dom"
+import React, { useEffect } from "react"
+import { NavLink, useLocation } from "react-router-dom"
 
-const gifHome = "https://i.giphy.com/PipqS8rFolj0393M1O.webp"
+const gifHome = `${process.env.PUBLIC_URL}/assets/jumbotron.png`
 
 const Home = () => {
+  const location = useLocation()
+
+  useEffect(() => {
+    if (location.state?.scrollTo === "classes") {
+      const sectionElement = document.getElementById("classes")
+      if (sectionElement) {
+        sectionElement.scrollIntoView({ behavior: "smooth", block: "start" })
+      }
+    }
+  }, [location.state])
+
   return (
-    <div>
-      <div className="intro-section" style={{ backgroundImage: `url(${gifHome})` }}>
-        <h1>THE WORLD'S TREASURES MADE ACCESSIBLE TO ALL</h1>
-        <NavLink to="/signup" className="join-button">
-          Join us now
-        </NavLink>
+<div>
+      <div className="intro-section">
+        <img src={gifHome} alt="Jumbotron" className="jumbotron-image" />
+        <div className="intro-content">
+          <h1>THE WORLD'S TREASURES MADE ACCESSIBLE TO ALL</h1>
+          <NavLink to="/signup" className="join-button">Join us now</NavLink>
+        </div>
       </div>
+
 
       <div className="services-overview">
         <h2>Why Choose Kanji?</h2>
@@ -19,28 +32,25 @@ const Home = () => {
           <div className="service-card">
             <h3>Simple and Intuitive</h3>
             <p>
-              Our drag-and-drop interface makes collectible management a breeze,
-              even if you have no coding experience.
+              Easy collectible management.
             </p>
           </div>
           <div className="service-card">
             <h3>Stunning Store</h3>
             <p>
-              Choose from a wide range of professionally designed templates
-              tailored to showcase rare collectibles.
+              Showcase your collectibles
             </p>
           </div>
           <div className="service-card">
             <h3>Powerful Features</h3>
             <p>
-             Power Your Store with Secure Payments, Inventory Contol, and SEO mastery.
+             Secure Payments, Inventory, and SEO
             </p>
           </div>
           <div className="service-card">
             <h3>Scalability</h3>
             <p>
-              Start small and grow big! Our platform is equipped to handle your
-              collection's growth, ensuring a seamless experience.
+              Growth with a seamless experience
             </p>
           </div>
         </div>

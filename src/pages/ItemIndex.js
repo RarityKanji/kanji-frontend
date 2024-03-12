@@ -11,7 +11,12 @@ const ItemIndex = ({ collectibles, setCollectibles }) => {
     const fetchCollectibles = async () => {
       try {
         setLoading(true)
-        const response = await fetch(`/api/collectibles?category=${category}`)
+        const baseUrl = "http://localhost:3000"
+        let url = `${baseUrl}/collectibles`
+        if (category) {
+          url += `?category=${category}`
+        }
+        const response = await fetch(url)
         if (!response.ok) {
           throw new Error("Failed to fetch items")
         }
@@ -24,11 +29,7 @@ const ItemIndex = ({ collectibles, setCollectibles }) => {
       }
     }
 
-    if (category) {
-      fetchCollectibles()
-    } else {
-      console.error("Category parameter is undefined.")
-    }
+    fetchCollectibles()
   }, [category])
 
   const handleSearchChange = (e) => {
@@ -74,7 +75,7 @@ const ItemIndex = ({ collectibles, setCollectibles }) => {
         </div>
       </div>
       {loading ? (
-        <p>Loading...</p>
+        <div className="spinner-message">Your treasures await...</div>
       ) : (
         <div className="items-grid">
           {filteredCollectibles.length > 0 ? (

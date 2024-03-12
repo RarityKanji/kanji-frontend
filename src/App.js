@@ -57,7 +57,7 @@ const App = () => {
  } 
   
   const signup = (userInfo) => {
-    fetch("${url}/signup", {
+    fetch(`${url}/signup`, {
       body: JSON.stringify(userInfo),
       headers: {
         "Content-Type": "application/json",

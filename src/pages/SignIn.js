@@ -1,8 +1,7 @@
 import React, { useState, useRef } from "react"
 import { useNavigate, NavLink } from "react-router-dom"
 
-const logoPath = `${process.env.PUBLIC_URL}/assets/logo.png`
-const backgroundImageUrl = `${process.env.PUBLIC_URL}/assets/superman.png`
+const backgroundImageUrl = `${process.env.PUBLIC_URL}/assets/login.png`
 
 const SignIn = ({ login }) => {
   const [showPassword, setShowPassword] = useState(false)
@@ -25,8 +24,7 @@ const SignIn = ({ login }) => {
   return (
     <div className="signup-container">
       <div className="signup-form">
-        <img src={logoPath} alt="Kanji Logo" className="logo" />
-        <h1>Sign In</h1>
+        <h1>Sign in</h1>
         <div className="social-buttons">
           <button className="social-button">Sign in with Google</button>
           <button className="social-button">Sign in with Facebook</button>
@@ -68,7 +66,7 @@ const SignIn = ({ login }) => {
               Forgot password?
             </NavLink>
           </div>
-          <input type="submit" className="signup-button" value="Submit" />
+          <button type="submit" className="signup-button">Sign in</button>
         </form>
         <div className="sign-up-redirect">
           <p>
