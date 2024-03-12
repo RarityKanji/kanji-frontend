@@ -102,7 +102,7 @@ const ItemShow = ({ collectibles, deleteCollectible, currentUser }) => {
             </button>
             <button className="checkout">Trade</button>
             <button className="checkout">Buy now</button>
-            {isOwner && (
+            {/* {isOwner && ( */}
               <div className="item-owner-actions">
                 <Link to={`/itemedit/${collectible?.id}`} className="edit-button">
                   <FaEdit /> Edit
@@ -111,7 +111,7 @@ const ItemShow = ({ collectibles, deleteCollectible, currentUser }) => {
                   <FaTrash /> Delete
                 </button>
               </div>
-            )}
+            {/* )} */}
           </div>
         </div>
       </div>
