@@ -104,7 +104,7 @@ const ItemShow = ({ collectibles, deleteCollectible, currentUser }) => {
             <button className="checkout">Buy now</button>
             {isOwner && (
               <div className="item-owner-actions">
-                <Link to={`/itemedit/${id}`} className="edit-button">
+                <Link to={`/itemedit/${collectible?.id}`} className="edit-button">
                   <FaEdit /> Edit
                 </Link>
                 <button onClick={handleDelete} className="delete-button">
