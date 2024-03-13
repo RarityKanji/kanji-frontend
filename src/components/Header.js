@@ -8,7 +8,6 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap"
-import { Link } from "react-scroll"
 
 const logoUrl = `${process.env.PUBLIC_URL}/assets/logo.png`
 
