@@ -5,8 +5,6 @@ import { useNavigate, NavLink } from "react-router-dom"
 const backgroundImageUrl = `${process.env.PUBLIC_URL}/assets/signup.png`
 
 const SignUp = ({ signup }) => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
   const [rememberMe, setRememberMe] = useState(false)
   const navigate = useNavigate()
@@ -76,7 +74,7 @@ const SignUp = ({ signup }) => {
               Remember me
             </label>
             <a
-              href="#"
+              href="*"
               className="forgot-password"
               onClick={() => navigate("/forgot-password")}
             >

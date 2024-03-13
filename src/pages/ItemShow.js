@@ -12,13 +12,10 @@ import { confirmAlert } from "react-confirm-alert"
 const ItemShow = ({ collectibles, deleteCollectible, currentUser }) => {
   const { id } = useParams()
   const navigate = useNavigate()
-  const [mainImage, setMainImage] = useState("")
-  const [quantity, setQuantity] = useState(1)
+  const [ setMainImage] = useState("")
+  const [ setQuantity] = useState(1)
   const collectible = collectibles?.find((item) => item?.id === +id)
 
-  const handleQuantityChange = (change) => {
-    setQuantity((prevQuantity) => Math.max(1, prevQuantity + change))
-  }
   const emailSubject = encodeURIComponent(`Inquiry about ${collectible?.name}`)
   const emailBody = encodeURIComponent(
     `I am interested in your ${collectible?.name} listed for ${collectible?.price}. Could you provide more information?`
@@ -91,11 +88,6 @@ const ItemShow = ({ collectibles, deleteCollectible, currentUser }) => {
           >
             <FaEnvelope /> Contact Seller
           </a>
-          {/* <div className="quantity-selector">
-            <button onClick={() => handleQuantityChange(-1)}>-</button>
-            <span>{quantity}</span>
-            <button onClick={() => handleQuantityChange(1)}>+</button>
-          </div> */}
           <div className="item-actions">
             <button className="add-to-bag">
               <FaShoppingCart /> Add to treasure chest
