@@ -13,7 +13,6 @@ const ItemShow = ({ collectibles, deleteCollectible, currentUser }) => {
   const { id } = useParams()
   const navigate = useNavigate()
   const [ setMainImage] = useState("")
-  const [ setQuantity] = useState(1)
   const collectible = collectibles?.find((item) => item?.id === +id)
 
   const emailSubject = encodeURIComponent(`Inquiry about ${collectible?.name}`)

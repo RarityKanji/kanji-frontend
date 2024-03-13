@@ -30,7 +30,7 @@ const ItemIndex = ({ collectibles, setCollectibles }) => {
     }
 
     fetchCollectibles()
-  }, [category])
+  }, [category, setCollectibles])
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value)
