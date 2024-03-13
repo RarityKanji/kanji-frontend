@@ -106,7 +106,7 @@ const Home = () => {
 
       <div className="call-to-action">
         <h2>Ready to Launch Your Online Store? Start Today!</h2>
-        <NavLink to="/get-started" className="start-now-button">
+        <NavLink to="/signup" className="start-now-button">
           Start now
         </NavLink>
       </div>

@@ -17,6 +17,7 @@ import SignIn from "./pages/SignIn"
 import ContactUs from "./pages/ContactUs"
 import TermsOfUse from "./pages/TermsOfUse"
 import PrivacyPolicy from "./pages/PrivacyPolicy"
+import ScrollToTop from "./components/ScrollToTop"
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null)
@@ -151,6 +152,7 @@ const App = () => {
   return (
     <>
       <Header currentUser={currentUser} logout={logout} setCurrentUser={setCurrentUser} />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home currentUser={currentUser} />} />
         <Route path="/about-us" element={<AboutUs />} />
