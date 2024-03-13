@@ -102,16 +102,19 @@ const ItemShow = ({ collectibles, deleteCollectible, currentUser }) => {
             </button>
             <button className="checkout">Trade</button>
             <button className="checkout">Buy now</button>
-            {/* {isOwner && ( */}
+            {isOwner && (
               <div className="item-owner-actions">
-                <Link to={`/itemedit/${collectible?.id}`} className="edit-button">
+                <button
+                  className="edit-button"
+                  onClick={() => navigate(`/itemedit/${collectible?.id}`)}
+                >
                   <FaEdit /> Edit
-                </Link>
+                </button>
                 <button onClick={handleDelete} className="delete-button">
                   <FaTrash /> Delete
                 </button>
               </div>
-            {/* )} */}
+            )}
           </div>
         </div>
       </div>

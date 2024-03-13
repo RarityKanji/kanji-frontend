@@ -17,7 +17,7 @@ import SignIn from "./pages/SignIn"
 import ContactUs from "./pages/ContactUs"
 import TermsOfUse from "./pages/TermsOfUse"
 import PrivacyPolicy from "./pages/PrivacyPolicy"
-import ScrollToTop from "./pages/ScrollToTop"
+import ScrollToTop from "./components/ScrollToTop"
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null)
