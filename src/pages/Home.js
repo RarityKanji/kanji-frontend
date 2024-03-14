@@ -76,28 +76,31 @@ const Home = () => {
         <ul className="trusted-logos">
           <li>
             <img
-              src="http://tinyurl.com/5n8xk8tc"
+              src={`${process.env.PUBLIC_URL}/images/metmuseum.png`}
               alt="The Metropolitan Museum of Art Logo"
             />
           </li>
           <li>
             <img
-              src="http://tinyurl.com/kasjzd7v"
+              src={`${process.env.PUBLIC_URL}/images/smithsonian.png`}
               alt="Smithsonian Institution Logo"
             />
           </li>
           <li>
             <img
-              src="http://tinyurl.com/28n5zztw"
+              src={`${process.env.PUBLIC_URL}/images/national.png`}
               alt="National Gallery of Art Logo"
             />
           </li>
           <li>
-            <img src="http://tinyurl.com/eekdmhps" alt="The Louvre Logo" />
+            <img
+              src={`${process.env.PUBLIC_URL}/images/louvre.png`}
+              alt="The Louvre Logo"
+            />
           </li>
           <li>
             <img
-              src="http://tinyurl.com/2arn4fyt"
+              src={`${process.env.PUBLIC_URL}/images/moma.png`}
               alt="Museum of Modern Art (MoMA) Logo"
             />
           </li>

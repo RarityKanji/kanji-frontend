@@ -31,7 +31,7 @@ const App = () => {
     }
     readCollectibles()
   }, [])
-  const url = "http://localhost:3000"
+  const url = "https://kanji-backend.onrender.com"
 
   const login = (userInfo) => {
     fetch(`${url}/login`, {
