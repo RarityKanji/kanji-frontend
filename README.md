@@ -9,7 +9,7 @@ A dynamic full-stack marketplace designed to make unique collectibles, from art 
 
 ## Live Demo
 
-- Click [here](https://) to view the live demo.
+- Click [here](https://https://kanji-frontend.onrender.com/) to view the live demo.
 
 ## Getting Started
 
@@ -24,8 +24,8 @@ Ensure you have Node.js `16.0.0` or higher and npm `9.0.0` or higher installed.
 Clone the repository and open it in your preferred code editor.
 
 ```
-git clone https://github.com/aimforexcellenceinall/raritykanji.git
-cd raritykanji && code .
+git clone https://github.com/RarityKanji/kanji-frontend.git
+cd kanji-frontend && code .
 ```
 
 ### Install
