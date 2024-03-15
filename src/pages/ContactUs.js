@@ -5,7 +5,7 @@ const teamMembers = [
   {
     name: "Irvin Moore",
     role: "Project and Product Manager",
-    bio: "Irvin is the Project and Product Manager who blends art and science to craft intuitive user experiences backed by robust backend systems. With a commitment to excellence and a keen eye for detail, he champions minimalistic design and clean, maintainable code. Irvin thrives on solving complex challenges and continuously pushes the boundaries of technology to create digital solutions that exceed expectations. His portfolio showcases a range of projects that demonstrate his ability to translate client needs into seamless, user-centric applications.",
+    bio: "Irvin merges minimalism with tech to lead projects toward intuitive, robust solutions. Dedicated to clean, maintainable code and adept at overcoming complex challenges, his focus on network security underpins his commitment to superior digital experiences.",
     linkedInUrl: "https://linkedin.com/in/irvinmoore",
     githubUrl: "https://github.com/irvinmoore",
     email: "irvin.moore7@gmail.com",
@@ -14,7 +14,7 @@ const teamMembers = [
   {
     name: "Yoshihiro 'Hiro' Yamada",
     role: "Tech Anchor",
-    bio: "As the Tech Anchor, Hiro specializes in developing scalable and secure web applications that address real-world problems. His approach combines a solid foundation in web development principles with a zest for continuous learning. Hiro is adept at navigating the full web development lifecycle and employs the latest technologies to enhance application performance and security. His commitment to quality and innovation is evident in his contributions to web solutions that are not only effective but also forward-thinking.",
+    bio: "Hiro specializes in crafting secure, scalable web applications that address pressing issues. Grounded in solid web development with a dedication to continuous learning, Hiro integrates the latest technologies to advance app performance. His work is inspired by Japanese efficiency, signifying his commitment to excellence and innovation.",
     linkedInUrl: "https://www.linkedin.com/in/yoshihiroyamada/",
     githubUrl: "https://github.com/yoshihiroyamada23",
     email: "yoshihiro.yamada1995@gmail.com",
@@ -23,7 +23,7 @@ const teamMembers = [
   {
     name: "Jeremie Joseph",
     role: "Design Lead",
-    bio: "Jeremie excels in design leadership, with a particular passion for creating responsive and visually engaging user interfaces. His work is driven by the belief that every application should not only function flawlessly but also captivate and delight its users. By leveraging modern frameworks and a deep understanding of user behavior, Jeremie crafts applications that offer immersive digital experiences. His dedication to professional growth and his proactive approach to problem-solving make him a valuable asset to any development team.",
+    bio: "Jeremie champions engaging, responsive design to enchant and facilitate user experiences. Leveraging modern design frameworks and insights into user behavior, Jeremie creates immersive digital environments. His commitment to professional growth and inspiration from the outdoors enrich his creative solutions.",
     linkedInUrl: "https://linkedin.com/in/jeremiejoseph",
     githubUrl: "https://github.com/aimforexcellenceinall",
     email: "aimforexcellenceinall@gmail.com",
@@ -45,6 +45,7 @@ const ContactUs = () => {
             />
           <CardBody className="contact-card-body">
             <CardTitle className="contact-card-title" tag="h5">{member.name}</CardTitle>
+            <CardText className="contact-card-role">{member.role}</CardText>
             <CardText className="contact-card-text">{member.bio}</CardText>
             <div className="contact-card-links">
               <button className="contact-link-button-linkedIn" onClick={() => window.open(member.linkedInUrl, '_blank')}>LinkedIn</button>
