@@ -9,7 +9,7 @@ A dynamic full-stack marketplace designed to make unique collectibles, from art 
 
 ## Live Demo
 
-- Click [here](https://https://kanji-frontend.onrender.com/) to view the live demo.
+- Click [here](https://kanji-frontend.onrender.com/) to view the live demo.
 
 ## Getting Started
 
