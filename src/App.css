@@ -867,16 +867,6 @@ h6 {
   background-color: #ffffff;
 }
 
-@media (min-width: 768px) {
-  .signup-container {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: stretch;
-    height: 100vh;
-    width: 100vw;
-  }
-}
-
 .signup-form {
   padding: 30px;
   width: 100%;
@@ -917,15 +907,9 @@ h6 {
   margin: 20px 0;
 }
 
-@media (min-width: 768px) {
-  .social-buttons {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .social-button {
-    flex-basis: 48%;
-  }
+.social-button {
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .divider {
@@ -950,6 +934,7 @@ h6 {
 }
 
 .signup-image {
+  display: none;
   flex-grow: 1;
   width: 50%;
   height: 100vh;
@@ -959,6 +944,9 @@ h6 {
 
 @media (min-width: 768px) {
   .signup-container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
     height: 100vh;
     width: 100vw;
   }
@@ -967,11 +955,23 @@ h6 {
     width: 50%;
   }
 
-  .signup-form,
   .signup-image {
+    display: block;
+    flex-grow: 1;
     width: 50%;
+    height: 100vh;
     background-size: cover;
     background-position: center;
+  }
+
+  .social-buttons {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .social-button {
+    flex-basis: 48%;
+    margin-bottom: 0;
   }
 }
 
@@ -1152,6 +1152,7 @@ h6 {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 20px;
   line-height: 1.6;
+  margin-top: 60px;
 }
 
 .about-hero h1 {
@@ -1280,33 +1281,18 @@ h6 {
   gap: 10px;
 }
 
-.contact-link-button-linkedIn,
-.contact-link-button-github,
-.contact-link-button-email {
+.contact-link-button {
   font-size: 18px;
   padding: 12px 0;
-  background-color: #051824;
-  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   text-transform: uppercase;
   letter-spacing: 1px;
   width: 100%;
   margin-bottom: 10px;
-}
-
-.contact-link-button-linkedIn:hover,
-.contact-link-button-github:hover,
-.contact-link-button-email:hover {
-  background-color: #0a2e36;
-}
-
-.contact-card-links {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 10px;
+  color: white; 
 }
 
 .contact-link-button-linkedIn {
@@ -1318,20 +1304,20 @@ h6 {
 }
 
 .contact-link-button-email {
-  background-color: #99201f;
-}
-
-.contact-link-button-linkedIn,
-.contact-link-button-github,
-.contact-link-button-email {
-  background-image: linear-gradient(145deg, #f5f5f5, #e0e0e0);
-  color: #051824;
+  background-color: #99201f; 
 }
 
 .contact-link-button-linkedIn:hover,
 .contact-link-button-github:hover,
 .contact-link-button-email:hover {
-  background-image: none;
+  background-color: #0a2e36; 
+  color: white;
+}
+
+.contact-card-links {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 10px;
 }
 
 /* PrivacyPolicy Styles */
