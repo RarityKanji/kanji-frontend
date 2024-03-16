@@ -6,7 +6,7 @@ const ItemIndex = ({ collectibles, setCollectibles }) => {
   const [searchTerm, setSearchTerm] = useState("")
   const [sortOrder, setSortOrder] = useState("asc")
   const [loading, setLoading] = useState(true)
-
+console.log(collectibles)
   useEffect(() => {
     const fetchCollectibles = async () => {
       try {

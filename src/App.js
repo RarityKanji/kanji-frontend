@@ -22,6 +22,7 @@ import ScrollToTop from "./components/ScrollToTop"
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null)
   const [collectibles, setCollectibles] = useState([])
+  // console.log(collectibles)
   const navigate = useNavigate()
   
   useEffect(() => {
@@ -31,7 +32,7 @@ const App = () => {
     }
     readCollectibles()
   }, [])
-  const url = "https://kanji-backend.onrender.com"
+  const url = "http://localhost:3000"
 
   const login = (userInfo) => {
     fetch(`${url}/login`, {
@@ -160,7 +161,7 @@ const App = () => {
         <Route path="/itemprotectedindex" element={<ItemProtectedIndex currentUser={currentUser} collectibles={collectibles} />} />
         <Route path="/itemedit/:id" element={<ItemEdit currentUser={currentUser} editCollectible={editCollectible} collectibles={collectibles} />} />
         <Route path="/itemshow/:id" element={<ItemShow currentUser={currentUser} collectibles={collectibles} deleteCollectible={deleteCollectible} />} />
-        <Route path="/collectibles/:category" element={<ItemIndex collectibles={collectibles} />} />
+        <Route path="/collectibles/:category" element={<ItemIndex collectibles={collectibles} setCollectibles={setCollectibles} />} />
         <Route path="/signup" element={<SignUp  signup={signup} />} />
         <Route path="/login" element={<SignIn login={login} />} />
         <Route path="/contact-us" element={<ContactUs  />}/>
